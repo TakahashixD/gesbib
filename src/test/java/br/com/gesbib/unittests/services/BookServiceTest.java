@@ -57,7 +57,7 @@ public class BookServiceTest {
 		assertEquals("author1", result.getAuthor());
 		assertEquals("1111111111", result.getIsbn());
 		assertEquals("category1", result.getCategory());
-		assertEquals(LocalDate.now(), result.getPublish_date());
+		assertEquals(LocalDate.now(), result.getPublishDate());
 	}
 	
 	@Test
@@ -88,7 +88,7 @@ public class BookServiceTest {
 		assertEquals("author1", bookOne.getAuthor());
 		assertEquals("1111111111", bookOne.getIsbn());
 		assertEquals("category1", bookOne.getCategory());
-		assertEquals(LocalDate.now(), bookOne.getPublish_date());
+		assertEquals(LocalDate.now(), bookOne.getPublishDate());
 
 		var bookFour = books.getContent().get(4);
 		assertNotNull(bookFour);
@@ -96,7 +96,7 @@ public class BookServiceTest {
 		assertEquals("author4", bookFour.getAuthor());
 		assertEquals("4444444444", bookFour.getIsbn());
 		assertEquals("category4", bookFour.getCategory());
-		assertEquals(LocalDate.now(), bookFour.getPublish_date());
+		assertEquals(LocalDate.now(), bookFour.getPublishDate());
 		
 		var bookSeven = books.getContent().get(7);
 		assertNotNull(bookSeven);
@@ -104,7 +104,7 @@ public class BookServiceTest {
 		assertEquals("author7", bookSeven.getAuthor());
 		assertEquals("7777777777", bookSeven.getIsbn());
 		assertEquals("category7", bookSeven.getCategory());
-		assertEquals(LocalDate.now(), bookSeven.getPublish_date());
+		assertEquals(LocalDate.now(), bookSeven.getPublishDate());
 	}
 	
 	@Test
@@ -125,7 +125,7 @@ public class BookServiceTest {
 		assertEquals("author1", result.getAuthor());
 		assertEquals("1111111111", result.getIsbn());
 		assertEquals("category1", result.getCategory());
-		assertEquals(LocalDate.now(), result.getPublish_date());
+		assertEquals(LocalDate.now(), result.getPublishDate());
 	}
 	
 	@Test

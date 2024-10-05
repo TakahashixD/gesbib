@@ -2,7 +2,6 @@ package br.com.gesbib.service;
 
 import java.util.logging.Logger;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -12,22 +11,24 @@ import br.com.gesbib.dto.PersonDTO;
 import br.com.gesbib.exceptions.RequiredObjectIsNullException;
 import br.com.gesbib.mapper.PersonMapper;
 import br.com.gesbib.repository.PersonRepository;
+import jakarta.transaction.Transactional;
 import br.com.gesbib.exceptions.ResourceNotFoundException;
 
 @Service
+@Transactional
 public class PersonService {
 
+	private Logger logger = Logger.getLogger(PersonService.class.getName());
 	private final PersonRepository personRepository;
 	
 	public PersonService(PersonRepository personRepository) {
 		this.personRepository = personRepository;
 	}
 	
-	private Logger logger = Logger.getLogger(PersonService.class.getName());
 	
 	public PersonDTO create(PersonDTO personDTO){
 		if(personDTO == null) throw new RequiredObjectIsNullException();
-		logger.info("save person");
+		logger.info("create person");
 		Person person = PersonMapper.INSTANCE.personDTOToPerson(personDTO);
 		return PersonMapper.INSTANCE.personToPersonDTO(personRepository.save(person));
 	}

@@ -41,8 +41,9 @@ public class PersonController {
 		return personService.findAll(pageble);
 	}
 	
-	@PutMapping
-	public PersonDTO update(@RequestBody PersonDTO person) {
+	@PutMapping(value = "/{id}")
+	public PersonDTO update(@PathVariable(value="id") Long id, @RequestBody PersonDTO person) {
+		person.setId(id);
 		return personService.update(person);
 	}
 	

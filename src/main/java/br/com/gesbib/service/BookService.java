@@ -12,20 +12,23 @@ import br.com.gesbib.exceptions.RequiredObjectIsNullException;
 import br.com.gesbib.exceptions.ResourceNotFoundException;
 import br.com.gesbib.mapper.BookMapper;
 import br.com.gesbib.repository.BookRepository;
+import jakarta.transaction.Transactional;
 
 @Service
+@Transactional
 public class BookService {
+	
+	private Logger logger = Logger.getLogger(BookService.class.getName());
 	private final BookRepository bookRepository;
 	
 	public BookService(BookRepository bookRepository) {
 		this.bookRepository = bookRepository;
 	}
 	
-	private Logger logger = Logger.getLogger(BookService.class.getName());
 	
 	public BookDTO create(BookDTO bookDTO){
 		if(bookDTO == null) throw new RequiredObjectIsNullException();
-		logger.info("save book");
+		logger.info("create book");
 		Book book = BookMapper.INSTANCE.bookDTOToBook(bookDTO);
 		return BookMapper.INSTANCE.bookToBookDTO(bookRepository.save(book));
 	}

@@ -41,8 +41,9 @@ public class BookController {
 		return bookService.findAll(pageable);
 	}
 	
-	@PutMapping
-	public BookDTO update(@RequestBody BookDTO book) {
+	@PutMapping(value = "/{id}")
+	public BookDTO update(@PathVariable(value="id") Long id, @RequestBody BookDTO book) {
+		book.setId(id);
 		return bookService.update(book);
 	}
 	

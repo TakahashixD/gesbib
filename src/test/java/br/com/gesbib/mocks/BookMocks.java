@@ -44,7 +44,7 @@ public class BookMocks {
         book.setAuthor("author"+number);
         book.setCategory("category"+number);
         book.setIsbn(number.toString().repeat(10));
-        book.setPublish_date(LocalDate.now());
+        book.setPublishDate(LocalDate.now());
         return book;
     }
 
@@ -55,7 +55,7 @@ public class BookMocks {
         book.setAuthor("author"+number);
         book.setCategory("category"+number);
         book.setIsbn(number.toString().repeat(10));
-        book.setPublish_date(LocalDate.now());
+        book.setPublishDate(LocalDate.now());
         return book;
     }
 }
