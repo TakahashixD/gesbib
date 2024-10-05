@@ -1,6 +1,9 @@
 package br.com.gesbib.controller;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,14 +15,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gesbib.dto.PersonDTO;
+import br.com.gesbib.service.PersonService;
 
 @RestController
 @RequestMapping("/api/person/v1")
 public class PersonController {
 	
+	private final PersonService personService;
+	
+	public PersonController(PersonService personService) {
+		this.personService = personService;
+	}
+
 	@PostMapping
 	public PersonDTO create(@RequestBody PersonDTO person) {
-		return null;
+		return personService.create(person);
 	}
 	
 	@GetMapping
@@ -27,16 +37,18 @@ public class PersonController {
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size)
 	{
-		return null;
+		Pageable pageble = PageRequest.of(page, size);
+		return personService.findAll(pageble);
 	}
 	
 	@PutMapping
 	public PersonDTO update(@RequestBody PersonDTO person) {
-		return null;
+		return personService.update(person);
 	}
 	
 	@DeleteMapping(value = "/{id}")
-	public PersonDTO delete(@PathVariable(value="id") Long id) {
-		return null;
+	public ResponseEntity<?> delete(@PathVariable(value="id") Long id) {
+		personService.delete(id);
+		return ResponseEntity.noContent().build();
 	}
 }

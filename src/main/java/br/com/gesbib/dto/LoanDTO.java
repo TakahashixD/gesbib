@@ -4,15 +4,12 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@SuppressWarnings("unused")
 public class LoanDTO implements Serializable{
 		
     private static final long serialVersionUID = 1L;

@@ -9,5 +9,8 @@ import br.com.gesbib.dto.BookDTO;
 @Mapper
 public interface BookMapper {
 	BookMapper INSTANCE = Mappers.getMapper( BookMapper.class );
+	
     BookDTO bookToBookDTO(Book book);
+    
+    Book bookDTOToBook(BookDTO bookDTO);
 }

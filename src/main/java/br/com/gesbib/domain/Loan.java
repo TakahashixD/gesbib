@@ -32,11 +32,11 @@ public class Loan implements Serializable{
 	
     @ManyToOne
     @JoinColumn(name = "person_id")
-	private Person personId;
+	private Person person;
 
     @ManyToOne
     @JoinColumn(name = "book_id")
-	private Book bookId;
+	private Book book;
     
 	@Column(name = "author", nullable = false)
 	private String author;
