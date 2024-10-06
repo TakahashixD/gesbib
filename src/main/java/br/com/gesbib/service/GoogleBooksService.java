@@ -21,7 +21,7 @@ import br.com.gesbib.exceptions.ResourceNotFoundException;
 
 @Service
 public class GoogleBooksService {
-	private final String KEY = ***REMOVED***;
+	private final String KEY = "";
 
 	public List<GoogleBooksDTO> searchBooks(String title) throws IOException, InterruptedException, GeneralSecurityException {
 	    HttpTransport transport = GoogleNetHttpTransport.newTrustedTransport();
