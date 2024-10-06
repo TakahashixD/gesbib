@@ -41,6 +41,12 @@ public class BookController {
 		this.googleBooksService = googleBooksService;
 	}
 
+    /**
+     * Create a book.
+     *
+     * @param BookDTO of entity Book
+     * @return BookDTO
+     */
 	@Operation(summary = "create a book", description = "create a book")
 	@PostMapping
 	public BookDTO create(@RequestBody BookDTO book) {
