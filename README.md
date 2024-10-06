@@ -1,8 +1,8 @@
 # Índice 
 
 * [Como rodar](#Como-rodar)
-   * [BACK-END JAVA 21](#BACK--END-JAVA-21)
-   * [FRONT-END ANGULAR 18](#FRONT--END-ANGULAR-18)
+   * [BACK-END JAVA 21](#back-end-java-21)
+   * [FRONT-END ANGULAR 18](#front-end-angular-18)
 
 
 # Como rodar
