@@ -1,0 +1,83 @@
+<div class="container pt-5">
+    <div class="flex gap-3">
+        <div class="mat-elevation-z8 teste">
+            <table  mat-table [dataSource]="dataSourceBook">
+    
+              <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef> ID </th>
+                <td mat-cell *matCellDef="let element">{{element.id}}</td>
+              </ng-container>
+              
+              <ng-container matColumnDef="title">
+                <th mat-header-cell *matHeaderCellDef> title </th>
+                <td mat-cell *matCellDef="let element">{{element.title}}</td>
+              </ng-container>
+    
+              <ng-container matColumnDef="author">
+                <th mat-header-cell *matHeaderCellDef> Author </th>
+                <td mat-cell *matCellDef="let element">{{element.author}}</td>
+              </ng-container>
+    
+              <ng-container matColumnDef="isbn">
+                <th mat-header-cell *matHeaderCellDef> ISBN </th>
+                <td mat-cell *matCellDef="let element">{{element.isbn}}</td>
+              </ng-container>
+    
+              <ng-container matColumnDef="publishDate">
+                <th mat-header-cell *matHeaderCellDef> Published Date </th>
+                <td mat-cell *matCellDef="let element">{{element.publishDate | date}}</td>
+              </ng-container>
+    
+              <ng-container matColumnDef="category">
+                <th mat-header-cell *matHeaderCellDef> Categories </th>
+                <td mat-cell *matCellDef="let element">{{element.category}}</td>
+              </ng-container>
+      
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsBook"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsBook;"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[10, 20]" [pageIndex]="pageIndexBook" [length]="totalBook" (page)="nextPageBook($event)" showFirstLastButtons aria-label="Book">
+            </mat-paginator>
+          </div>
+    
+          <div class="mat-elevation-z8 teste">
+            <table  mat-table [dataSource]="dataSourcePerson">
+    
+              <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef> ID </th>
+                <td mat-cell *matCellDef="let element">{{element.id}}</td>
+              </ng-container>
+              
+              <ng-container matColumnDef="title">
+                <th mat-header-cell *matHeaderCellDef> title </th>
+                <td mat-cell *matCellDef="let element">{{element.title}}</td>
+              </ng-container>
+    
+              <ng-container matColumnDef="author">
+                <th mat-header-cell *matHeaderCellDef> Author </th>
+                <td mat-cell *matCellDef="let element">{{element.author}}</td>
+              </ng-container>
+    
+              <ng-container matColumnDef="isbn">
+                <th mat-header-cell *matHeaderCellDef> ISBN </th>
+                <td mat-cell *matCellDef="let element">{{element.isbn}}</td>
+              </ng-container>
+    
+              <ng-container matColumnDef="publishDate">
+                <th mat-header-cell *matHeaderCellDef> Published Date </th>
+                <td mat-cell *matCellDef="let element">{{element.publishDate | date}}</td>
+              </ng-container>
+    
+              <ng-container matColumnDef="category">
+                <th mat-header-cell *matHeaderCellDef> Categories </th>
+                <td mat-cell *matCellDef="let element">{{element.category}}</td>
+              </ng-container>
+      
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsBook"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsBook;"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[10, 20]" [pageIndex]="pageIndexPerson" [length]="totalPerson" (page)="nextPageBook($event)" showFirstLastButtons aria-label="Book">
+            </mat-paginator>
+          </div>
+    </div>
+</div>

@@ -7,5 +7,5 @@ import br.com.gesbib.domain.Book;
 import java.util.List;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
-	List<Book> findByCategoryContaining(String category);
+	List<Book> findByCategoryContains(String category);
 }

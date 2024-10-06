@@ -47,7 +47,17 @@ public class BookMocks {
         book.setPublishDate(LocalDate.now());
         return book;
     }
-
+    
+    public Book mockEntitySameCategory(Integer number) {
+        Book book = new Book();
+        book.setId(number.longValue());
+        book.setTitle("title"+number);
+        book.setAuthor("author"+number);
+        book.setCategory("Western");
+        book.setIsbn(number.toString().repeat(10));
+        book.setPublishDate(LocalDate.now());
+        return book;
+    }
     public BookDTO mockDTO(Integer number) {
         BookDTO book = new BookDTO();
         book.setId(number.longValue());

@@ -76,10 +76,10 @@ public class PersonServiceTest {
 		
 		when(personRepository.findAll(pageable)).thenReturn(person);
 		
-		var people = personService.findAll(pageable);
+		Page<PersonDTO> people = personService.findAll(pageable);
 		assertEquals(14, people.getContent().size());
 		
-		var personOne = people.getContent().get(1);
+		PersonDTO personOne = people.getContent().get(1);
 		assertNotNull(personOne);
 		assertNotNull(personOne.getId());
 		assertEquals("teste+1@gmail.com", personOne.getEmail());
@@ -87,7 +87,7 @@ public class PersonServiceTest {
 		assertEquals("111111111", personOne.getPhone());
 		assertEquals(LocalDate.now(), personOne.getSignupDate());
 
-		var personFour = people.getContent().get(4);
+		PersonDTO personFour = people.getContent().get(4);
 		assertNotNull(personFour);
 		assertNotNull(personFour.getId());
 		assertEquals("teste+4@gmail.com", personFour.getEmail());
@@ -95,7 +95,7 @@ public class PersonServiceTest {
 		assertEquals("444444444", personFour.getPhone());
 		assertEquals(LocalDate.now(), personFour.getSignupDate());
 		
-		var personSeven = people.getContent().get(7);
+		PersonDTO personSeven = people.getContent().get(7);
 		assertNotNull(personSeven);
 		assertNotNull(personSeven.getId());
 		assertEquals("teste+7@gmail.com", personSeven.getEmail());
@@ -115,7 +115,7 @@ public class PersonServiceTest {
 		when(personRepository.findById(1L)).thenReturn(Optional.of(person));
 		when(personRepository.save(person)).thenReturn(persisted);
 		
-		var result = personService.update(dto);
+		PersonDTO result = personService.update(dto);
 		assertNotNull(result);
 		assertNotNull(result.getId());
 		assertEquals("teste+1@gmail.com", result.getEmail());

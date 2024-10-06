@@ -78,10 +78,10 @@ public class BookServiceTest {
 		
 		when(bookRepository.findAll(pageable)).thenReturn(book);
 		
-		var books = bookService.findAll(pageable);
+		Page<BookDTO> books = bookService.findAll(pageable);
 		assertEquals(9, books.getContent().size());
 		
-		var bookOne = books.getContent().get(1);
+		BookDTO bookOne = books.getContent().get(1);
 		assertNotNull(bookOne);
 		assertNotNull(bookOne.getId());
 		assertEquals("title1", bookOne.getTitle());
@@ -90,7 +90,7 @@ public class BookServiceTest {
 		assertEquals("category1", bookOne.getCategory());
 		assertEquals(LocalDate.now(), bookOne.getPublishDate());
 
-		var bookFour = books.getContent().get(4);
+		BookDTO bookFour = books.getContent().get(4);
 		assertNotNull(bookFour);
 		assertEquals("title4", bookFour.getTitle());
 		assertEquals("author4", bookFour.getAuthor());
@@ -98,7 +98,7 @@ public class BookServiceTest {
 		assertEquals("category4", bookFour.getCategory());
 		assertEquals(LocalDate.now(), bookFour.getPublishDate());
 		
-		var bookSeven = books.getContent().get(7);
+		BookDTO bookSeven = books.getContent().get(7);
 		assertNotNull(bookSeven);
 		assertEquals("title7", bookSeven.getTitle());
 		assertEquals("author7", bookSeven.getAuthor());
@@ -118,7 +118,7 @@ public class BookServiceTest {
 		when(bookRepository.findById(1L)).thenReturn(Optional.of(book));
 		when(bookRepository.save(book)).thenReturn(persisted);
 		
-		var result = bookService.update(dto);
+		BookDTO result = bookService.update(dto);
 		assertNotNull(result);
 		assertNotNull(result.getId());
 		assertEquals("title1", result.getTitle());

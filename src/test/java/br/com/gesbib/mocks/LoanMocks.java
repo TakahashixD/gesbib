@@ -20,6 +20,7 @@ public class LoanMocks {
     public LoanDTO mockDTO() {
         return mockDTO(0);
     }
+    
     public Page<Loan> mockEntityList() {
         List<Loan> loans = new ArrayList<Loan>();
         for (int i = 0; i < 14; i++) {
