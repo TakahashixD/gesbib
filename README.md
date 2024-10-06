@@ -7,7 +7,9 @@
 
 # Como rodar
 Lembrar de alterar as configurações do Banco de dados no src/main/resources/application-dev.yml
+
 Adicionar API KEY do Google Books no GoogleBooksService 
+
 # BACK-END JAVA 21 
 
 É necessário ter o java 21 e o maven instalados.
