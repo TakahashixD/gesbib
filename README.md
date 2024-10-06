@@ -9,7 +9,7 @@ BACK-END JAVA 21
 
 Execute os comandos na ordem abaixo:
 ```
-mvn clean package
+mvn clean package -Pdev
 ```
 
 ```
