@@ -4,7 +4,6 @@
    * [BACK-END JAVA 21](#back-end-java-21)
    * [FRONT-END ANGULAR 18](#front-end-angular-18)
 
-
 # Como rodar
 Lembrar de alterar as configurações do Banco de dados no src/main/resources/application-dev.yml
 
@@ -40,3 +39,19 @@ npm install
 ```
 npm start
 ```
+
+# TESTANDO API
+
+Os testes podem ser feitos pelo swagger ou pelo FRONT-END
+
+Swagger
+```
+http://localhost:8080/swagger-ui/index.html
+```
+
+FRONT-END
+```
+http://localhost:4200/
+```
+
+
