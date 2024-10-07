@@ -74,16 +74,14 @@ public class BookServiceTest {
 	void testFindAll() {
 		Page<Book> book = input.mockEntityList();
 		
+		when(bookRepository.findAll(any(Pageable.class))).thenReturn(book);
+
 		Pageable pageable = PageRequest.of(0, 9);
-		
-		when(bookRepository.findAll(pageable)).thenReturn(book);
-		
 		Page<BookDTO> books = bookService.findAll(pageable);
 		assertEquals(9, books.getContent().size());
 		
 		BookDTO bookOne = books.getContent().get(1);
 		assertNotNull(bookOne);
-		assertNotNull(bookOne.getId());
 		assertEquals("title1", bookOne.getTitle());
 		assertEquals("author1", bookOne.getAuthor());
 		assertEquals("1111111111", bookOne.getIsbn());

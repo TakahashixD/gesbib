@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: gesbib
+  datasource: 
+    url: jdbc:postgresql://localhost:5432/gesbib
+    username: user
+    password: 1234

@@ -1,14 +1,18 @@
 package br.com.gesbib.service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.gesbib.domain.Book;
 import br.com.gesbib.domain.Loan;
 import br.com.gesbib.domain.Person;
 import br.com.gesbib.dto.LoanDTO;
+import br.com.gesbib.exceptions.AlreadyActiveException;
 import br.com.gesbib.exceptions.RequiredObjectIsNullException;
 import br.com.gesbib.mapper.LoanMapper;
 import br.com.gesbib.repository.BookRepository;
@@ -39,7 +43,9 @@ public class LoanService {
 		
 		Optional<Book> book = bookRepository.findById(loanDTO.getBookId());
 		Optional<Person> person = personRepository.findById(loanDTO.getPersonId());
+		List<Loan> listOfActive = loanRepository.findByStatusAndBookId(true, loanDTO.getBookId());
 		
+		if(listOfActive != null) throw new AlreadyActiveException("Book not avaliable!");
 		if(book.isEmpty() || person.isEmpty()) throw new RequiredObjectIsNullException();
 		
 		Loan loan = LoanMapper.INSTANCE.loanDTOToloan(loanDTO);
@@ -47,6 +53,11 @@ public class LoanService {
 		loan.setPerson(person.get());
 		
 		return LoanMapper.INSTANCE.loanToloanDTO(loanRepository.save(loan));
+	}
+	
+	public Page<LoanDTO> findAll(Pageable page){
+		logger.info("Finding all loans");
+		return LoanMapper.INSTANCE.loanToloanDTO(loanRepository.findAll(page));
 	}
 	
 	public LoanDTO partialUpdate(LoanDTO loanDTO) {

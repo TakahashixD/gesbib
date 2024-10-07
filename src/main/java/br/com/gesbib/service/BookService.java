@@ -1,5 +1,6 @@
 package br.com.gesbib.service;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 import org.springframework.data.domain.Page;
@@ -33,15 +34,25 @@ public class BookService {
 		return BookMapper.INSTANCE.bookToBookDTO(bookRepository.save(book));
 	}
 	
+	public List<BookDTO> findAll(){
+		logger.info("Finding all book");
+		return BookMapper.INSTANCE.bookToBookDTO(bookRepository.findAll());
+	}
+	
 	public Page<BookDTO> findAll(Pageable page){
 		logger.info("Finding all book");
-		return bookRepository.findAll(page).map(x -> BookMapper.INSTANCE.bookToBookDTO(x));
+		return BookMapper.INSTANCE.bookToBookDTO(bookRepository.findAll(page));
 	}
 	
 	public BookDTO update(BookDTO bookDTO){
 		if(bookDTO == null) throw new RequiredObjectIsNullException();
 		logger.info("update one book");
 		Book book = bookRepository.findById(bookDTO.getId()).orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
+		book.setTitle(bookDTO.getTitle());
+		book.setAuthor(bookDTO.getAuthor());
+		book.setIsbn(bookDTO.getIsbn());
+		book.setPublishDate(bookDTO.getPublishDate());
+		book.setCategory(bookDTO.getCategory());
 		return BookMapper.INSTANCE.bookToBookDTO(bookRepository.save(book));
 	}
 	

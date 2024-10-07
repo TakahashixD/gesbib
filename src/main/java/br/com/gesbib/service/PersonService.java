@@ -1,5 +1,6 @@
 package br.com.gesbib.service;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 import org.springframework.data.domain.Page;
@@ -33,15 +34,24 @@ public class PersonService {
 		return PersonMapper.INSTANCE.personToPersonDTO(personRepository.save(person));
 	}
 	
+	public List<PersonDTO> findAll(){
+		logger.info("Finding all person");
+		return PersonMapper.INSTANCE.personToPersonDTO(personRepository.findAll());
+	}
+	
 	public Page<PersonDTO> findAll(Pageable page){
 		logger.info("Finding all person");
-		return personRepository.findAll(page).map(x -> PersonMapper.INSTANCE.personToPersonDTO(x));
+		return PersonMapper.INSTANCE.personToPersonDTO(personRepository.findAll(page));
 	}
 	
 	public PersonDTO update(PersonDTO personDTO){
 		if(personDTO == null) throw new RequiredObjectIsNullException();
 		logger.info("update one person");
 		Person person = personRepository.findById(personDTO.getId()).orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
+		person.setName(personDTO.getName());
+		person.setEmail(personDTO.getEmail());
+		person.setSignupDate(personDTO.getSignupDate());
+		person.setPhone(personDTO.getPhone());
 		return PersonMapper.INSTANCE.personToPersonDTO(personRepository.save(person));
 	}
 	

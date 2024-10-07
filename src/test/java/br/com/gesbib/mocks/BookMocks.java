@@ -58,6 +58,7 @@ public class BookMocks {
         book.setPublishDate(LocalDate.now());
         return book;
     }
+    
     public BookDTO mockDTO(Integer number) {
         BookDTO book = new BookDTO();
         book.setId(number.longValue());

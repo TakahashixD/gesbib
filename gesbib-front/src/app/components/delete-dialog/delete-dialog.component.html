@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>Delete data</h2>
+<mat-dialog-content>
+  Are you sure you want to <span class="text-red-600">DELETE IT</span>?
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>No</button>
+  <button mat-button mat-dialog-close cdkFocusInitial (click)="deleteElement()">Ok</button>
+</mat-dialog-actions>

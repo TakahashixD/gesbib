@@ -117,6 +117,10 @@
 			    <artifactId>maven-compiler-plugin</artifactId>
 			    <configuration>
 			        <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId> <!-- IMPORTANT - LOMBOK BEFORE MAPSTRUCT -->
+                            <artifactId>lombok</artifactId>
+                        </path>
 			            <path>
 			                <groupId>org.mapstruct</groupId>
 			                <artifactId>mapstruct-processor</artifactId>
@@ -127,5 +131,20 @@
 			</plugin>
 		</plugins>
 	</build>
-
+	
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <env>development</env>
+            </properties>
+        </profile>
+        
+        <profile>
+            <id>prod</id>
+            <properties>
+                <env>production</env>
+            </properties>
+        </profile>
+    </profiles>
 </project>

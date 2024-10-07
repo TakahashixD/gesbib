@@ -11,45 +11,46 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Table(name= "loan")
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Loan implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
+	@NotNull
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotNull
     @ManyToOne
     @JoinColumn(name = "person_id")
 	private Person person;
 
+	@NotNull
     @ManyToOne
     @JoinColumn(name = "book_id")
 	private Book book;
-    
-	@Column(name = "author", nullable = false)
-	private String author;
 	
-	@Column(name = "isbn", nullable = false)
-	private String isbn;
-	
+	@NotNull
+    @PastOrPresent
 	@Column(name = "loan_date", nullable = false)
 	private LocalDate loanDate;
 	
+	@NotNull
 	@Column(name = "return_date", nullable = false)
 	private LocalDate returnDate;
 	
+	@NotNull
 	@Column(name = "status", nullable = false)
 	private Boolean status;
 	

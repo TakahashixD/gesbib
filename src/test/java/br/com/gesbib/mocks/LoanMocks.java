@@ -49,8 +49,6 @@ public class LoanMocks {
         loan.setId(number.longValue());
         loan.setPerson(person);
         loan.setBook(book);
-        loan.setAuthor("author"+number);
-        loan.setIsbn(number.toString().repeat(9)+"-"+number);
         loan.setLoanDate(LocalDate.now());
         loan.setReturnDate(LocalDate.now());
         loan.setStatus(number%2 == 0);
@@ -62,8 +60,6 @@ public class LoanMocks {
         loan.setId(number.longValue());
         loan.setPersonId(number.longValue());
         loan.setBookId(number.longValue());
-        loan.setAuthor("author"+number);
-        loan.setIsbn(number.toString().repeat(9)+"-"+number);
         loan.setLoanDate(LocalDate.now());
         loan.setReturnDate(LocalDate.now());
         loan.setStatus(number%2 == 0);

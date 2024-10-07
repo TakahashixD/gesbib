@@ -64,8 +64,6 @@ public class LoanServiceTest {
 		assertNotNull(result.getId());
 		assertNotNull(result.getBookId());
 		assertNotNull(result.getPersonId());
-		assertEquals("author1", result.getAuthor());
-		assertEquals("111111111-1", result.getIsbn());
 		assertEquals(LocalDate.now(), result.getLoanDate());
 		assertEquals(LocalDate.now(), result.getReturnDate());
 		assertEquals(false, result.getStatus());
@@ -123,8 +121,6 @@ public class LoanServiceTest {
 		assertNotNull(result.getId());
 		assertNotNull(result.getBookId());
 		assertNotNull(result.getPersonId());
-		assertEquals("author1", result.getAuthor());
-		assertEquals("111111111-1", result.getIsbn());
 		assertEquals(LocalDate.now(), result.getLoanDate());
 		assertEquals(LocalDate.of(2024, 11, 5), result.getReturnDate());
 		assertEquals(true, result.getStatus());

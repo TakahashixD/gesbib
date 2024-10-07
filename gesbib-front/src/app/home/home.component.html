@@ -1,15 +1,45 @@
-<div class="container pt-5">
-    <div class="flex gap-3">
-        <div class="mat-elevation-z8 teste">
-            <table  mat-table [dataSource]="dataSourceBook">
+<div class="container pt-5 pb-5">
+  <div class="bg-blue-100 border border-blue-500 text-blue-700 px-4 py-3 mb-5" role="alert">
+    <p class="font-bold">Informational message</p>
+    <p class="text-sm flex items-center"><mat-icon>add_box</mat-icon> Use for create a new element (Criar um novo elemento)</p>
+    <p class="text-sm flex items-center"><mat-icon>edit</mat-icon>Use to edit element (Editar o elemento)</p>
+    <p class="text-sm flex items-center"><mat-icon>delete_forever</mat-icon>Use to delete the element (Deletar o elemento)</p>
     
+    
+    
+  </div>
+    <div class="flex flex-col">
+        <h6 class="title pt-5">Books</h6>
+        <div class="mat-elevation-z8 table-com">
+            <table  mat-table [dataSource]="dataSourceBook">
+
+              <ng-container matColumnDef="options">
+                <th mat-header-cell *matHeaderCellDef>
+                  <div class="text-center">
+                    <button mat-icon-button matTooltip="Create" (click)="openDialogCreate(book)">
+                      <mat-icon>add_box</mat-icon>
+                    </button>
+                  </div>
+                </th>
+                <td mat-cell *matCellDef="let element">
+                  <div class="flex justify-center">
+                    <button mat-icon-button matTooltip="Edit" (click)="openDialogEdit(element, book)">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button matTooltip="Delete" (click)="openDialogDelete(element.id, book)">
+                      <mat-icon>delete_forever</mat-icon>
+                    </button>
+                  </div>
+                </td>
+              </ng-container>
+
               <ng-container matColumnDef="id">
                 <th mat-header-cell *matHeaderCellDef> ID </th>
                 <td mat-cell *matCellDef="let element">{{element.id}}</td>
               </ng-container>
               
               <ng-container matColumnDef="title">
-                <th mat-header-cell *matHeaderCellDef> title </th>
+                <th mat-header-cell *matHeaderCellDef> Title </th>
                 <td mat-cell *matCellDef="let element">{{element.title}}</td>
               </ng-container>
     
@@ -39,44 +69,119 @@
             <mat-paginator [pageSizeOptions]="[10, 20]" [pageIndex]="pageIndexBook" [length]="totalBook" (page)="nextPageBook($event)" showFirstLastButtons aria-label="Book">
             </mat-paginator>
           </div>
-    
-          <div class="mat-elevation-z8 teste">
+          <h6 class="title pt-5">Users</h6>
+          <div class="mat-elevation-z8 table-com">
             <table  mat-table [dataSource]="dataSourcePerson">
-    
+              
+              <ng-container matColumnDef="options">
+                <th mat-header-cell *matHeaderCellDef>
+                  <div class="text-center">
+                    <button mat-icon-button matTooltip="Create" (click)="openDialogCreate(person)">
+                      <mat-icon>add_box</mat-icon>
+                    </button>
+                  </div>
+                </th>
+                <td mat-cell *matCellDef="let element">
+                  <div class="flex justify-center">
+                    <button mat-icon-button matTooltip="Edit" (click)="openDialogEdit(element, person)">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button matTooltip="Delete" (click)="openDialogDelete(element.id, person)">
+                      <mat-icon>delete_forever</mat-icon>
+                    </button>
+                  </div>
+                </td>
+              </ng-container>
+
               <ng-container matColumnDef="id">
                 <th mat-header-cell *matHeaderCellDef> ID </th>
                 <td mat-cell *matCellDef="let element">{{element.id}}</td>
               </ng-container>
               
-              <ng-container matColumnDef="title">
-                <th mat-header-cell *matHeaderCellDef> title </th>
-                <td mat-cell *matCellDef="let element">{{element.title}}</td>
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Name </th>
+                <td mat-cell *matCellDef="let element">{{element.name}}</td>
               </ng-container>
     
-              <ng-container matColumnDef="author">
-                <th mat-header-cell *matHeaderCellDef> Author </th>
-                <td mat-cell *matCellDef="let element">{{element.author}}</td>
+              <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef> Email </th>
+                <td mat-cell *matCellDef="let element">{{element.email}}</td>
               </ng-container>
     
-              <ng-container matColumnDef="isbn">
-                <th mat-header-cell *matHeaderCellDef> ISBN </th>
-                <td mat-cell *matCellDef="let element">{{element.isbn}}</td>
+              <ng-container matColumnDef="signupDate">
+                <th mat-header-cell *matHeaderCellDef> Signup Date </th>
+                <td mat-cell *matCellDef="let element">{{element.signupDate | date}}</td>
               </ng-container>
     
-              <ng-container matColumnDef="publishDate">
-                <th mat-header-cell *matHeaderCellDef> Published Date </th>
-                <td mat-cell *matCellDef="let element">{{element.publishDate | date}}</td>
+              <ng-container matColumnDef="phone">
+                <th mat-header-cell *matHeaderCellDef> Phone </th>
+                <td mat-cell *matCellDef="let element">{{element.phone}}</td>
               </ng-container>
-    
-              <ng-container matColumnDef="category">
-                <th mat-header-cell *matHeaderCellDef> Categories </th>
-                <td mat-cell *matCellDef="let element">{{element.category}}</td>
-              </ng-container>
-      
-              <tr mat-header-row *matHeaderRowDef="displayedColumnsBook"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumnsBook;"></tr>
+  
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsPerson"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsPerson;"></tr>
             </table>
-            <mat-paginator [pageSizeOptions]="[10, 20]" [pageIndex]="pageIndexPerson" [length]="totalPerson" (page)="nextPageBook($event)" showFirstLastButtons aria-label="Book">
+            <mat-paginator [pageSizeOptions]="[10, 20]" [pageIndex]="pageIndexPerson" [length]="totalPerson" (page)="nextPagePerson($event)" showFirstLastButtons aria-label="Person">
+            </mat-paginator>
+          </div>
+          <h6 class="title pt-5">Loans</h6>
+          <div class="mat-elevation-z8 table-com">
+            <table  mat-table [dataSource]="dataSourceLoan">
+              
+              <ng-container matColumnDef="options">
+                <th mat-header-cell *matHeaderCellDef>
+                  <div class="text-center">
+                    <button mat-icon-button matTooltip="Create" (click)="openDialogCreate(book)">
+                      <mat-icon>add_box</mat-icon>
+                    </button>
+                  </div>
+                </th>
+                <td mat-cell *matCellDef="let element">
+                  <div class="flex justify-center">
+                    <button mat-icon-button matTooltip="Edit">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button matTooltip="Delete">
+                      <mat-icon>delete_forever</mat-icon>
+                    </button>
+                  </div>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef> ID </th>
+                <td mat-cell *matCellDef="let element">{{element.id}}</td>
+              </ng-container>
+              
+              <ng-container matColumnDef="personId">
+                <th mat-header-cell *matHeaderCellDef> Person ID </th>
+                <td mat-cell *matCellDef="let element">{{element.person.id}}</td>
+              </ng-container>
+    
+              <ng-container matColumnDef="bookId">
+                <th mat-header-cell *matHeaderCellDef> Book ID </th>
+                <td mat-cell *matCellDef="let element">{{element.book.id}}</td>
+              </ng-container>
+    
+              <ng-container matColumnDef="loanDate">
+                <th mat-header-cell *matHeaderCellDef> Loan date </th>
+                <td mat-cell *matCellDef="let element">{{element.loanDate | date}}</td>
+              </ng-container>
+    
+              <ng-container matColumnDef="returnDate">
+                <th mat-header-cell *matHeaderCellDef> Return date </th>
+                <td mat-cell *matCellDef="let element">{{element.returnDate | date}}</td>
+              </ng-container>
+  
+              <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef> Status </th>
+                <td mat-cell *matCellDef="let element">{{element.status}}</td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsLoan"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsLoan;"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[10, 20]" [pageIndex]="pageIndexLoan" [length]="totalLoan" (page)="nextPageLoan($event)" showFirstLastButtons aria-label="Person">
             </mat-paginator>
           </div>
     </div>

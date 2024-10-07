@@ -1,11 +1,10 @@
 package br.com.gesbib.unittests.services;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
 
 import java.io.IOException;
@@ -38,7 +37,7 @@ public class GoogleBooksServiceTest {
 		Volumes volumes = mock(Volumes.class);
 		when(books.volumes().list(anyString()).setLangRestrict("pt").setKey(KEY).setMaxResults(5L).execute())
 			.thenReturn(volumes);
-		verify(books.volumes().list(anyString()).setLangRestrict("pt").setKey(KEY).setMaxResults(5L).execute());
+		verifyNoInteractions(books.volumes().list("a").setLangRestrict("pt").setKey(KEY).setMaxResults(5L).execute());
 		assertNotNull(volumes);
 	}
 }

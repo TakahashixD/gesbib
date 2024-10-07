@@ -2,18 +2,18 @@ import { IBook } from '../interface/book.interface';
 
 export class Book implements IBook{
     constructor(
-        public id: number,
         public title: string,
         public author: string,
         public isbn: string,
-        public publishedDate: Date,
+        public publishDate: Date,
         public category: string,
+        public id?: number,
     ){
-        this.id = id;
         this.title = title;
         this.author = author;
         this.isbn = isbn;
-        this.publishedDate = publishedDate;
+        this.publishDate = publishDate;
         this.category = category;
+        this.id = id;
     }    
 }

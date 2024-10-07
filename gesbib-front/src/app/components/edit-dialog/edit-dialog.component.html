@@ -1,0 +1,57 @@
+<h2 mat-dialog-title>Edit data</h2>
+<mat-dialog-content>
+    @if (data.type === book) {
+        <form [formGroup]="bookForm" class="flex flex-col gap-2">
+            <mat-form-field>
+                <mat-label>Title</mat-label>
+                <input matInput formControlName="title">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Author</mat-label>
+                <input matInput formControlName="author">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>ISBN</mat-label>
+                <input matInput formControlName="isbn">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Publish Date</mat-label>
+                <input matInput [matDatepicker]="dp1" formControlName="publishDate" [attr.disabled]="true">
+                <mat-hint>DD/MM/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="dp1"></mat-datepicker-toggle>
+                <mat-datepicker #dp1 disabled="false"></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Categories</mat-label>
+                <input matInput formControlName="category">
+            </mat-form-field>
+            </form>
+    }
+    @else if (data.type === person) {
+        <form [formGroup]="personForm" class="flex flex-col gap-2">
+            <mat-form-field>
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Signup Date</mat-label>
+                <input matInput [matDatepicker]="dp2" formControlName="signupDate" [attr.disabled]="true">
+                <mat-hint>DD/MM/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="dp2"></mat-datepicker-toggle>
+                <mat-datepicker #dp2 disabled="false"></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Phone</mat-label>
+                <input matInput formControlName="phone">
+            </mat-form-field>
+        </form>
+    }
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Exit</button>
+  <button type="submit" mat-button mat-dialog-close (click)="editElement()" [disabled]="bookForm.invalid && personForm.invalid">Save</button>
+</mat-dialog-actions>

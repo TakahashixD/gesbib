@@ -19,9 +19,7 @@ public class LoanDTO implements Serializable{
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
 	private Long personId; 
-    private Long bookId;      
-    private String author;  
-    private String isbn;   
+    private Long bookId;       
     private LocalDate loanDate;     
     private LocalDate returnDate;    
     private Boolean status; 
