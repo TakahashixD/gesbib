@@ -42,7 +42,7 @@ npm start
 
 # TESTANDO API
 
-Os testes podem ser feitos pelo swagger ou pelo FRONT-END
+Os testes podem ser feitos pelo swagger ou pelo FRONT-END (Recomendo utilizar o Front)
 
 Swagger
 ```
