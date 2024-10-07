@@ -9,18 +9,19 @@ import { PersonService } from '../shared/service/person.service';
 import { IPerson } from '../shared/interface/person.interface';
 import { ILoan } from '../shared/interface/loan.interface';
 import { LoanService } from '../shared/service/loan.service';
-import { MatIconButton } from '@angular/material/button';
+import { MatButton, MatIconButton } from '@angular/material/button';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../components/delete-dialog/delete-dialog.component';
 import { EditDialogComponent } from '../components/edit-dialog/edit-dialog.component';
 import { CreateDialogComponent } from '../components/create-dialog/create-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [MatTableModule, MatPaginator, DatePipe, MatIconButton, MatIconModule, MatTooltipModule],
+  imports: [MatTableModule, MatPaginator, DatePipe, MatIconButton, MatIconModule, MatTooltipModule, MatButton],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -30,7 +31,8 @@ export class HomeComponent implements OnInit {
     loanService = inject(LoanService);
     dialog = inject(MatDialog);
     loaderService = inject(LoaderService);
-    
+    router = inject(Router);
+
     book: string = "book";
     person: string = "person";
     loan:string = "loan";
@@ -190,5 +192,9 @@ export class HomeComponent implements OnInit {
           }
         }
       });
+    }
+
+    navigateGoogleAPI(){
+      this.router.navigate(['/google-api']);
     }
 }

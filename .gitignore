@@ -4,6 +4,7 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 bfg.jar
+.env
 ### STS ###
 .apt_generated
 .classpath

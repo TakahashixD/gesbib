@@ -1,0 +1,64 @@
+<div class="container pt-5 pb-5">
+    <button mat-raised-button color="accent" class="mb-4" (click)="navigateHome()">Back To home</button>
+    <form>
+        <div class="flex items-center gap-5">
+            <mat-form-field>
+                <mat-label>Search</mat-label>
+                <input matInput [formControl]="searchFormControl">
+            </mat-form-field>
+            <button mat-raised-button color="primary" class="mb-4" (click)="searchBook()">Search</button>
+        </div>
+    </form>
+    <div class="mat-elevation-z8 table-com">
+        <table  mat-table [dataSource]="dataSourceBook">
+          <ng-container matColumnDef="options">
+            <th mat-header-cell *matHeaderCellDef>
+              <div class="text-center">
+              </div>
+            </th>
+            <td mat-cell *matCellDef="let element">
+              <div class="flex justify-center">
+                <button mat-icon-button matTooltip="Create" (click)="addTolib(element)">
+                    <mat-icon>add_box</mat-icon>
+                  </button>
+              </div>
+            </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef> Title </th>
+            <td mat-cell *matCellDef="let element">{{element.title}}</td>
+          </ng-container>
+    
+          <ng-container matColumnDef="author">
+            <th mat-header-cell *matHeaderCellDef> Authors </th>
+            <td mat-cell *matCellDef="let element">{{element.authors}}</td>
+          </ng-container>
+    
+          <ng-container matColumnDef="isbn">
+            <th mat-header-cell *matHeaderCellDef> ISBN </th>
+            <td mat-cell *matCellDef="let element">
+                @for (isbn of element.isbn; track isbn) {
+                    {{isbn.type}}: {{isbn.identifier}} <br>
+                }
+            </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="publishedDate">
+            <th mat-header-cell *matHeaderCellDef> Published Date </th>
+            <td mat-cell *matCellDef="let element">{{element.publishedDate | date}}</td>
+          </ng-container>
+    
+          <ng-container matColumnDef="categories">
+            <th mat-header-cell *matHeaderCellDef> Categories </th>
+            <td mat-cell *matCellDef="let element">{{element.categories}}</td>
+          </ng-container>
+    
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsBook"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsBook;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" [length]="totalBook" showFirstLastButtons aria-label="Book">
+        </mat-paginator>
+      </div>
+    
+</div>

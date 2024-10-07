@@ -35,8 +35,9 @@ export class BookService {
         return this.http.get<IPage>(`${this.resourceUrl}`, { params: req, observe: 'response' });
     }
 
-    searchGoogleAPI(req: any): Observable<HttpResponse<IGoogleBook[]>> {
-        return this.http.get<IGoogleBook[]>(`${this.resourceUrl}/search`, { params: req, observe: 'response' });
+    searchGoogleAPI(req: string): Observable<HttpResponse<IGoogleBook[]>> {
+        const search = {title: req};
+        return this.http.get<IGoogleBook[]>(`${this.resourceUrl}/search`, { params: search, observe: 'response' });
     }
 
     delete(id: number): Observable<HttpResponse<{}>> {
