@@ -56,6 +56,7 @@ export class HomeComponent implements OnInit {
     requestPerson = {};
     requestLoan = {};
 
+    todayDate = new Date();
     ngOnInit() {
       this.loadBooks(this.requestBook);
       this.loadPersons(this.requestPerson);
@@ -104,7 +105,6 @@ export class HomeComponent implements OnInit {
         {
           next: (res) => {
             if(res.body){
-              console.log(res.body);
               this.dataSourceLoan.data = res.body.content;
               this.pageIndexLoan = res.body.page.number;
               this.totalLoan = res.body.page.totalElements;
@@ -166,6 +166,9 @@ export class HomeComponent implements OnInit {
           }
           if(type === "person"){
             this.loadPersons(this.requestPerson);
+          }
+          if(type === "person"){
+            this.loadLoans(this.requestLoan);
           }
         }
       });

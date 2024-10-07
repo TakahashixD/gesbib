@@ -27,6 +27,10 @@ export class BookService {
         return this.http.put<IBook>(`${this.resourceUrl}/${book.id}`, pkg, { observe: 'response' });
     }
 
+    getAll(): Observable<EntityArrayResponseType> {
+        return this.http.get<IBook[]>(`${this.resourceUrl}/all`, {  observe: 'response' });
+    }
+
     get(req?: any): Observable<HttpResponse<IPage>> {
         return this.http.get<IPage>(`${this.resourceUrl}`, { params: req, observe: 'response' });
     }

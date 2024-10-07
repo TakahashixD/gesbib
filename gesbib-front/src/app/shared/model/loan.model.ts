@@ -1,19 +1,19 @@
 import { ILoan } from '../interface/loan.interface';
 
-export class Book implements ILoan{
+export class Loan implements ILoan{
     constructor(
-        public id: number,
         public personId: number,
         public bookId: number,
         public loanDate: Date,
         public returnDate: Date,
         public status: boolean,
+        public id?: number,
     ){
-        this.id = id;
         this.personId = personId;
         this.bookId = bookId;
         this.loanDate = loanDate;
         this.returnDate = returnDate;
         this.status = status;
+        this.id = id;
     }    
 }

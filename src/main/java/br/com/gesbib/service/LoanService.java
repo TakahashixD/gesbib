@@ -43,10 +43,10 @@ public class LoanService {
 		
 		Optional<Book> book = bookRepository.findById(loanDTO.getBookId());
 		Optional<Person> person = personRepository.findById(loanDTO.getPersonId());
-		List<Loan> listOfActive = loanRepository.findByStatusAndBookId(true, loanDTO.getBookId());
-		
-		if(listOfActive != null) throw new AlreadyActiveException("Book not avaliable!");
 		if(book.isEmpty() || person.isEmpty()) throw new RequiredObjectIsNullException();
+		
+		Optional<List<Loan>> listOfActive = loanRepository.findByStatusAndBookId(true, loanDTO.getBookId());
+		if(listOfActive.isPresent() && !listOfActive.get().isEmpty()) throw new AlreadyActiveException("Book not avaliable!");
 		
 		Loan loan = LoanMapper.INSTANCE.loanDTOToloan(loanDTO);
 		loan.setBook(book.get());

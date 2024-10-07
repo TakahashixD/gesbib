@@ -1,5 +1,5 @@
 export interface ILoan{
-    id: number;
+    id?: number;
     personId: number;
     bookId: number;
     loanDate: Date;

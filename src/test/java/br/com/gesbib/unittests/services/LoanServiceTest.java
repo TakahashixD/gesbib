@@ -8,6 +8,8 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -54,10 +56,11 @@ public class LoanServiceTest {
 		Loan loan = input.mockEntity(1);
 		
 		LoanDTO dto = input.mockDTO(1);
-		
+		List<Loan> listOfActive = new ArrayList<>();
 		when(bookRepository.findById((1L))).thenReturn(Optional.of(loan.getBook()));
 		when(personRepository.findById((1L))).thenReturn(Optional.of(loan.getPerson()));
 		when(loanRepository.save(any(Loan.class))).thenReturn(loan);
+		when(loanRepository.findByStatusAndBookId(true, 1L)).thenReturn(Optional.of(listOfActive));
 		
 		LoanDTO result = loanService.create(dto);
 		assertNotNull(result);

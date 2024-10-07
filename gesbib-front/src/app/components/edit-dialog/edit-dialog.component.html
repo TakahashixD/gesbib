@@ -16,7 +16,7 @@
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Publish Date</mat-label>
-                <input matInput [matDatepicker]="dp1" formControlName="publishDate" [attr.disabled]="true">
+                <input matInput [matDatepicker]="dp1" [max]="todayDate" formControlName="publishDate">
                 <mat-hint>DD/MM/YYYY</mat-hint>
                 <mat-datepicker-toggle matIconSuffix [for]="dp1"></mat-datepicker-toggle>
                 <mat-datepicker #dp1 disabled="false"></mat-datepicker>
@@ -39,7 +39,7 @@
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Signup Date</mat-label>
-                <input matInput [matDatepicker]="dp2" formControlName="signupDate" [attr.disabled]="true">
+                <input matInput [matDatepicker]="dp2" formControlName="signupDate" [max]="todayDate">
                 <mat-hint>DD/MM/YYYY</mat-hint>
                 <mat-datepicker-toggle matIconSuffix [for]="dp2"></mat-datepicker-toggle>
                 <mat-datepicker #dp2 disabled="false"></mat-datepicker>
@@ -50,8 +50,26 @@
             </mat-form-field>
         </form>
     }
+    @else if (data.type === loan) {
+        <form [formGroup]="loanForm" class="flex flex-col gap-2">
+            <mat-form-field>
+                <mat-label>Status</mat-label>
+                <mat-select formControlName="status" name="status">
+                    <mat-option [value]="true">Loaned</mat-option>
+                    <mat-option [value]="false">Returned</mat-option>
+                </mat-select>
+              </mat-form-field>
+            <mat-form-field>
+                <mat-label>Return Date</mat-label>
+                <input matInput [matDatepicker]="dp3" [min]="todayDate" formControlName="returnDate">
+                <mat-hint>DD/MM/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="dp3"></mat-datepicker-toggle>
+                <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+            </mat-form-field>
+        </form>
+    }
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button mat-dialog-close>Exit</button>
-  <button type="submit" mat-button mat-dialog-close (click)="editElement()" [disabled]="bookForm.invalid && personForm.invalid">Save</button>
+  <button type="submit" mat-button mat-dialog-close (click)="editElement()" [disabled]="disableSave()">Save</button>
 </mat-dialog-actions>

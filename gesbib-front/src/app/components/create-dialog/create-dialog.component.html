@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Edit data</h2>
+<h2 mat-dialog-title>Create Element</h2>
 <mat-dialog-content>
     @if (data.type === book) {
         <form [formGroup]="bookForm" class="flex flex-col gap-2">
@@ -44,23 +44,41 @@
         </form>
     }
     @else if (data.type === loan) {
-        <form [formGroup]="personForm" class="flex flex-col gap-2">
+        <div class="bg-blue-100 border border-blue-500 text-blue-700 px-4 py-3 mb-5" role="alert">
+            <p class="font-bold">Informational message</p>
+            <p class="text-sm flex items-center">Select the person and what book will be loaned for him.</p>
+            <p class="text-sm flex items-center">After that mark a date for the return.</p>
+          </div>
+        <form [formGroup]="loanForm" class="flex flex-col gap-2">
             <mat-form-field>
-                <mat-label>Name</mat-label>
-                <input matInput formControlName="name">
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Email</mat-label>
-                <input matInput formControlName="email">
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Phone</mat-label>
-                <input matInput formControlName="phone">
+                <mat-label>Person</mat-label>
+                <mat-select formControlName="personId" name="person">
+                  @for (person of personsList; track person) {
+                    <mat-option [value]="person.id">{{person.name}}</mat-option>
+                  }
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Book</mat-label>
+                <mat-select formControlName="bookId" name="book">
+                  @for (book of booksList; track book) {
+                    <mat-option [value]="book.id">{{book.title}}</mat-option>
+                  }
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Return Date</mat-label>
+                <input matInput [matDatepicker]="dp1" formControlName="returnDate" [attr.disabled]="true" [min]="todayDate">
+                <mat-hint>DD/MM/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="dp1"></mat-datepicker-toggle>
+                <mat-datepicker #dp1 disabled="false"></mat-datepicker>
             </mat-form-field>
         </form>
     }
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button mat-dialog-close>Exit</button>
-  <button type="submit" mat-button mat-dialog-close (click)="createElement()" [disabled]="bookForm.invalid && personForm.invalid">Save</button>
+  <button type="submit" mat-button mat-dialog-close (click)="createElement()" [disabled]="disableSave()">Save</button>
 </mat-dialog-actions>

@@ -29,6 +29,10 @@ export class PersonService {
         return this.http.get<IPage>(`${this.resourceUrl}`, { params: req, observe: 'response' });
     }
 
+    getAll(): Observable<EntityArrayResponseType> {
+        return this.http.get<IPerson[]>(`${this.resourceUrl}/all`, {  observe: 'response' });
+    }
+
     delete(id: number): Observable<HttpResponse<{}>> {
         return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
     }
